@@ -23,7 +23,7 @@ const RecentTips = () => {
 
         {tips.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {tips.slice(0, 5).map((tip) => (
+            {tips.slice(0, 3).map((tip) => (
               <div key={tip.id} className="card bg-white shadow-md">
                 <div className="card-body">
                   <h2 className="card-title text-green-600">{tip.title}</h2>
