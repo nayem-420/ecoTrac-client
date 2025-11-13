@@ -1,9 +1,12 @@
 import React from 'react';
+import { Outlet } from 'react-router';
+import Footer from '../Components/Footer';
 
 const MainLayouts = () => {
     return (
         <div>
-            <h1>main Layouts</h1>
+            <Outlet></Outlet>
+            <Footer></Footer>
         </div>
     );
 };
