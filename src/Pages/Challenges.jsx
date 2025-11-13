@@ -3,7 +3,9 @@ import React from 'react';
 const Challenges = () => {
     return (
         <div>
-            <h1>Challenges</h1>
+            <div>
+                <h1>challenges</h1>
+            </div>
         </div>
     );
 };
