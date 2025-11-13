@@ -5,6 +5,7 @@ import Challenges from "../Pages/Challenges";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import ForgetPassword from "../Pages/ForgetPassword";
+import NotFound from "../Components/NotFound";
 
 export const router = createBrowserRouter([
   {
@@ -32,5 +33,9 @@ export const router = createBrowserRouter([
         element: <ForgetPassword />,
       },
     ],
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   },
 ]);
