@@ -4,6 +4,7 @@ import Home from "../Pages/Home";
 import Challenges from "../Pages/Challenges";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
+import ForgetPassword from "../Pages/ForgetPassword";
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ export const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      {
+        path: "/forget-password",
+        element: <ForgetPassword />,
       },
     ],
   },
