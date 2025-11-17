@@ -1,7 +1,7 @@
 import React, { use } from "react";
 import { FaCalendar, FaClock, FaUsers, FaLeaf, FaUser } from "react-icons/fa";
 import { LuTarget } from "react-icons/lu";
-import { useLoaderData, useNavigate } from "react-router";
+import { Link, useLoaderData, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
 
@@ -9,17 +9,6 @@ const ChallengeDetails = () => {
   const challenge = useLoaderData();
   const { user } = use(AuthContext);
   const navigate = useNavigate();
-
-  console.log("Challenge data:", challenge);
-
-  // Check if challenge exists
-  if (!challenge) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-xl text-gray-600">Challenge not found</p>
-      </div>
-    );
-  }
 
   const {
     _id,
@@ -82,6 +71,56 @@ const ChallengeDetails = () => {
     }
   };
 
+  const handleDelete = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:3000/challenges/${_id}`, {
+          method: "DELETE",
+          headers: {
+            "content-type": "application/json",
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.success) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Challenge has been deleted successfully.",
+                icon: "success",
+              }).then(() => {
+                navigate("/challenges");
+              });
+            } else {
+              Swal.fire({
+                icon: "error",
+                title: "Failed",
+                text: data.message || "Failed to delete challenge",
+                confirmButtonColor: "#d33",
+              });
+            }
+          })
+          .catch((error) => {
+            console.error("Error deleting challenge:", error);
+            Swal.fire({
+              icon: "error",
+              title: "Request Failed",
+              text: "Something went wrong. Try again later.",
+              confirmButtonColor: "#d33",
+            });
+          });
+      }
+    });
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 py-12 px-4">
       <div className="max-w-6xl mx-auto">
@@ -92,8 +131,7 @@ const ChallengeDetails = () => {
             <div className="relative h-96 lg:h-auto overflow-hidden group">
               <img
                 src={
-                  imageUrl ||
-                  "https://via.placeholder.com/600x400?text=Challenge+Image"
+                  imageUrl
                 }
                 alt={title}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
@@ -140,17 +178,18 @@ const ChallengeDetails = () => {
                 )}
               </div>
 
-              <div className="flex gap-5 my-6">
-                <button
-                  
-                  className="btn btn-lg bg-orange-400 hover:bg-orange-500 text-white border-none hover:scale-105 active:scale-95 transition-transform"
+              {/* Action Buttons */}
+              <div className="flex gap-3 mb-6">
+                <Link
+                  to={`/update-challenge/${_id}`}
+                  className="btn btn-lg bg-orange-400 hover:bg-orange-500 text-white border-none hover:scale-105 active:scale-95 transition-transform flex-1"
                 >
                   Update
-                </button>
+                </Link>
 
                 <button
-                  
-                  className="btn btn-lg bg-red-600 hover:bg-red-700 text-white border-none hover:scale-105 active:scale-95 transition-transform"
+                  onClick={handleDelete}
+                  className="btn btn-lg bg-red-600 hover:bg-red-700 text-white border-none hover:scale-105 active:scale-95 transition-transform flex-1"
                 >
                   Delete
                 </button>
@@ -158,7 +197,7 @@ const ChallengeDetails = () => {
 
               <button
                 onClick={handleJoin}
-                className="btn btn-lg bg-green-600 hover:bg-green-700 text-white border-none hover:scale-105 active:scale-95 transition-transform"
+                className="btn btn-lg bg-green-600 hover:bg-green-700 text-white border-none hover:scale-105 active:scale-95 transition-transform w-full"
               >
                 Join Challenge
               </button>

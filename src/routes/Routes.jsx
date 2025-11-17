@@ -10,6 +10,7 @@ import ChallengeDetails from "../Pages/ChallengeDetails";
 import MyActivities from "../Pages/MyActivities";
 import Challenges1 from "../Pages/Challenges1";
 import PrivateRoute from "../Layouts/PrivateRoutes";
+import UpdateChallenge from "../Pages/UpdateChallenge";
 
 export const router = createBrowserRouter([
   {
@@ -34,6 +35,16 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <ChallengeDetails></ChallengeDetails>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/challenges/${params.id}`),
+      },
+      {
+        path: "update-challenge/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateChallenge></UpdateChallenge>
           </PrivateRoute>
         ),
         loader: ({ params }) =>
