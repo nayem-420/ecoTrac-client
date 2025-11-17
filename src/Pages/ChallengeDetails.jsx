@@ -25,6 +25,8 @@ const ChallengeDetails = () => {
     imageUrl,
   } = challenge;
 
+//   console.log(challenge);
+
   const handleJoin = async () => {
     if (!user) {
       return navigate("/login");
@@ -130,9 +132,7 @@ const ChallengeDetails = () => {
             {/* Image Section */}
             <div className="relative h-96 lg:h-auto overflow-hidden group">
               <img
-                src={
-                  imageUrl
-                }
+                src={imageUrl}
                 alt={title}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
@@ -195,12 +195,13 @@ const ChallengeDetails = () => {
                 </button>
               </div>
 
-              <button
+              <Link
+                to={"/my-activities"}
                 onClick={handleJoin}
                 className="btn btn-lg bg-green-600 hover:bg-green-700 text-white border-none hover:scale-105 active:scale-95 transition-transform w-full"
               >
                 Join Challenge
-              </button>
+              </Link>
             </div>
           </div>
         </div>

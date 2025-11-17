@@ -52,9 +52,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/my-activities",
-        element: <MyActivities></MyActivities>,
-        loader: () =>
-          fetch(`http://localhost:3000/my-activities?email=test@gmail.com`),
+        element: (
+          <PrivateRoute>
+            <MyActivities></MyActivities>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",
