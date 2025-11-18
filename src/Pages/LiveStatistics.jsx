@@ -2,21 +2,13 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 const LiveStatistics = () => {
-  // MongoDB থেকে আসা data এখানে রাখবেন
   const [stats, setStats] = useState({
     co2Saved: 0,
     plasticReduced: 0,
     activeMembers: 0,
   });
 
-  // এখানে আপনার actual data fetch করবেন
   useEffect(() => {
-    // Example: MongoDB থেকে data fetch
-    // fetch('/api/statistics')
-    //   .then(res => res.json())
-    //   .then(data => setStats(data));
-
-    // Demo purpose এর জন্য static data
     setStats({
       co2Saved: 12500,
       plasticReduced: 3200,

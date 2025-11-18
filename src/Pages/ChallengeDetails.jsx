@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import React from "react";
 import { FaCalendar, FaClock, FaUsers, FaLeaf, FaUser } from "react-icons/fa";
 import { LuTarget } from "react-icons/lu";
 import { Link, useLoaderData, useNavigate } from "react-router";
@@ -7,7 +7,6 @@ import Swal from "sweetalert2";
 
 const ChallengeDetails = () => {
   const challenge = useLoaderData();
-  const { user } = use(AuthContext);
   const navigate = useNavigate();
 
   const {
@@ -25,53 +24,7 @@ const ChallengeDetails = () => {
     imageUrl,
   } = challenge;
 
-//   console.log(challenge);
-
-  const handleJoin = async () => {
-    if (!user) {
-      return navigate("/login");
-    }
-
-    try {
-      const res = await fetch(`http://localhost:3000/challenges/join/${_id}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: user.email,
-        }),
-      });
-
-      const data = await res.json();
-
-      if (data.success) {
-        Swal.fire({
-          icon: "success",
-          title: "Joined Successfully!",
-          text: "You have joined this challenge.",
-          confirmButtonColor: "#16a34a",
-        }).then(() => {
-          navigate("/my-activities");
-        });
-      } else {
-        Swal.fire({
-          icon: "error",
-          title: "Failed",
-          text: data.message || "Could not join challenge.",
-          confirmButtonColor: "#d33",
-        });
-      }
-    } catch (error) {
-      console.error("Error joining challenge:", error);
-      Swal.fire({
-        icon: "error",
-        title: "Request Failed",
-        text: "Something went wrong. Try again later.",
-        confirmButtonColor: "#d33",
-      });
-    }
-  };
+  //   console.log(challenge);
 
   const handleDelete = () => {
     Swal.fire({
@@ -194,14 +147,6 @@ const ChallengeDetails = () => {
                   Delete
                 </button>
               </div>
-
-              <Link
-                to={"/my-activities"}
-                onClick={handleJoin}
-                className="btn btn-lg bg-green-600 hover:bg-green-700 text-white border-none hover:scale-105 active:scale-95 transition-transform w-full"
-              >
-                Join Challenge
-              </Link>
             </div>
           </div>
         </div>

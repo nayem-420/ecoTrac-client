@@ -11,11 +11,14 @@ import MyActivities from "../Pages/MyActivities";
 import Challenges1 from "../Pages/Challenges1";
 import PrivateRoute from "../Layouts/PrivateRoutes";
 import UpdateChallenge from "../Pages/UpdateChallenge";
+import Loading from "../Layouts/Loading";
+import RecentTips from "../Pages/RecentTips";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayouts></MainLayouts>,
+    hydrateFallbackElement:<Loading></Loading>,
     children: [
       {
         index: true,
@@ -55,6 +58,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyActivities></MyActivities>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/tips",
+        element: (
+          <PrivateRoute>
+            <RecentTips></RecentTips>
           </PrivateRoute>
         ),
       },
