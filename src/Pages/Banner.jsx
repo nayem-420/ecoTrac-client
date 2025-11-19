@@ -140,7 +140,6 @@ const Banner = () => {
         </motion.div>
       </AnimatePresence>
 
-      {/* Navigation Arrows */}
       <motion.button
         onClick={prevSlide}
         className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/50 backdrop-blur-sm p-3 rounded-full text-white z-10 transition-colors"
@@ -159,7 +158,6 @@ const Banner = () => {
         <FaChevronRight size={20} />
       </motion.button>
 
-      {/* Dots Indicator */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-10">
         {slides.map((_, index) => (
           <motion.button

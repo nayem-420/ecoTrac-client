@@ -1,26 +1,21 @@
-import React, { use, useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useContext } from "react";
 import { CiCirclePlus } from "react-icons/ci";
+import Swal from "sweetalert2";
 import { AuthContext } from "../Provider/AuthProvider";
 
 const RecentTips = () => {
   const [tips, setTips] = useState([]);
   const [loading, setLoading] = useState(true);
   const tipsModalRef = useRef(null);
-  const { user } = use(AuthContext);
+  const { user } = useContext(AuthContext);
 
   const fetchTips = async () => {
     try {
       setLoading(true);
       const res = await fetch("http://localhost:3000/api/tips");
-
-      if (!res.ok) {
-        throw new Error("Failed to fetch tips");
-      }
-
       const data = await res.json();
       console.log("Tips data:", data);
 
-      // ✅ Check if data is array or object
       if (Array.isArray(data)) {
         setTips(data);
       } else if (data.success && Array.isArray(data.tips)) {
@@ -53,7 +48,7 @@ const RecentTips = () => {
       title: form.title.value,
       content: form.content.value,
       category: form.category.value,
-      email: user?.email || user, // ✅ Email properly handle korchi
+      email: user?.email || user,
     };
 
     try {
@@ -69,15 +64,29 @@ const RecentTips = () => {
       if (data.success) {
         form.reset();
         tipsModalRef.current.close();
-
-        // ✅ Refresh tips list
         await fetchTips();
+
+        Swal.fire({
+          icon: "success",
+          title: "Added!",
+          text: "Your tip has been successfully added.",
+          timer: 2000,
+          showConfirmButton: false,
+        });
       } else {
-        alert(data.message || "Failed to add tip");
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: data.message || "Failed to add tip",
+        });
       }
-    } catch (error) {
-      console.error("Error adding tip:", error);
-      alert("Failed to add tip. Please try again.");
+    } catch (err) {
+      console.error(err);
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Something went wrong!",
+      });
     }
   };
 

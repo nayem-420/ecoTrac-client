@@ -122,7 +122,6 @@ const Challenges = () => {
   return (
     <section className="py-8 bg-base-100">
       <div className="container mx-auto px-4">
-        {/* Header - NO "View All Challenges" button */}
         <div className="flex flex-col items-center mb-6 gap-4">
           <h1 className="text-4xl font-bold text-green-700">
             All Eco-Friendly Challenges

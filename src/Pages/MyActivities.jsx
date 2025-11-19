@@ -174,7 +174,6 @@ const MyActivities = () => {
           </div>
         </div>
 
-        {/* Activities Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredActivities.map((activity) => (
             <div
@@ -182,7 +181,6 @@ const MyActivities = () => {
               className="card bg-white shadow-lg hover:shadow-xl transition-all hover:-translate-y-1"
             >
               <div className="card-body">
-                {/* Activity Type Badge */}
                 <div className="flex items-center justify-between mb-3">
                   <div className="badge badge-primary gap-2">
                     {activity.type === "tip" ? (
@@ -200,7 +198,6 @@ const MyActivities = () => {
                   </span>
                 </div>
 
-                {/* Challenge Details */}
                 {activity.challengeDetails && (
                   <>
                     <h2 className="card-title text-green-700 mb-2">
@@ -219,7 +216,6 @@ const MyActivities = () => {
                   </>
                 )}
 
-                {/* Tip Details */}
                 {activity.type === "tip" && (
                   <>
                     <h2 className="card-title text-orange-600 mb-2">
@@ -233,13 +229,11 @@ const MyActivities = () => {
                   </>
                 )}
 
-                {/* Joined Date with Icon */}
                 <div className="flex items-center gap-2 text-sm text-gray-500 mt-auto pt-3 border-t border-gray-200">
                   <FaCalendar className="text-gray-400" />
                   <span>{new Date(activity.createdAt).toLocaleDateString()}</span>
                 </div>
 
-                {/* View Details Button for Challenges */}
                 {activity.challengeDetails && (
                   <div className="card-actions justify-end mt-4">
                     <Link
@@ -255,7 +249,6 @@ const MyActivities = () => {
           ))}
         </div>
 
-        {/* No Results for Filter */}
         {filteredActivities.length === 0 && activities.length > 0 && (
           <div className="text-center py-12">
             <p className="text-gray-600 text-lg">

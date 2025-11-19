@@ -16,7 +16,6 @@ const LiveStatistics = () => {
     });
   }, []);
 
-  // Counter animation এর জন্য
   const Counter = ({ target, suffix = "" }) => {
     const [count, setCount] = useState(0);
 
@@ -123,7 +122,6 @@ const LiveStatistics = () => {
           whileTap={{ scale: 0.95 }}
           className={`relative overflow-hidden rounded-3xl bg-gradient-to-br ${stat.gradient} p-8 text-white shadow-2xl ${stat.hoverColor} hover:shadow-2xl transition-all duration-300`}
         >
-          {/* Background decoration */}
           <motion.div
             className="absolute -top-10 -right-10 text-9xl opacity-10"
             animate={{
@@ -138,7 +136,6 @@ const LiveStatistics = () => {
             {stat.icon}
           </motion.div>
 
-          {/* Floating particles effect */}
           <motion.div
             className="absolute inset-0 pointer-events-none"
             initial={{ opacity: 0 }}
@@ -199,7 +196,7 @@ const LiveStatistics = () => {
               {stat.label}
             </motion.p>
 
-            {/* Progress bar effect */}
+            
             <motion.div
               className="mt-4 h-1 bg-white/30 rounded-full overflow-hidden"
               initial={{ width: 0 }}
@@ -219,7 +216,7 @@ const LiveStatistics = () => {
             </motion.div>
           </div>
 
-          {/* Pulse effect on hover */}
+          
           <motion.div
             className="absolute inset-0 bg-white opacity-0"
             whileHover={{

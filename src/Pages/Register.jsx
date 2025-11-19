@@ -20,7 +20,7 @@ const Register = () => {
       return "Password must contain at least one uppercase letter.";
     if (!/[a-z]/.test(password))
       return "Password must contain at least one lowercase letter.";
-    if (!/[!@#$%^&*(),.?\":{}|<>]/.test(password))
+    if (!/[!@#$%^&*(),.?/":{}|<>]/.test(password))
       return "Password must contain at least one special character.";
     return "";
   };
@@ -75,12 +75,12 @@ const Register = () => {
   };
 
   const handleGoogleSignIn = () => {
-    console.log("Google Sign-In clicked"); // Debug log
+    console.log("Google Sign-In clicked");
     setLoading(true);
 
     signInWithGoogle()
       .then((result) => {
-        console.log("Google Sign-In Success:", result.user); // Debug log
+        console.log("Google Sign-In Success:", result.user);
         const user = result.user;
         setUser(user);
         Swal.fire({
@@ -95,7 +95,7 @@ const Register = () => {
         navigate("/");
       })
       .catch((error) => {
-        console.error("Google Sign-In Error:", error); // Debug log
+        console.error("Google Sign-In Error:", error); 
         console.error("Error Code:", error.code);
         console.error("Error Message:", error.message);
 
