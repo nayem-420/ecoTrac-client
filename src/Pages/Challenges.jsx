@@ -74,13 +74,16 @@ const Challenges = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:3000/challenges", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newChallenge),
-      });
+      const response = await fetch(
+        "https://auth-eco-trac-server.vercel.app/challenges",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newChallenge),
+        }
+      );
 
       const data = await response.json();
 

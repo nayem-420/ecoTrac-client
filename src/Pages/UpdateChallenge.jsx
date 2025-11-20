@@ -22,13 +22,16 @@ const UpdateChallenge = () => {
       console.log("Sending update request for ID:", _id);
       console.log("FormData:", formData);
 
-      const res = await fetch(`http://localhost:3000/challenges/${_id}`, {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const res = await fetch(
+        `https://auth-eco-trac-server.vercel.app/challenges/${_id}`,
+        {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       console.log("Response status:", res.status);
 

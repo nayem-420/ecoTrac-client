@@ -12,7 +12,9 @@ const RecentTips = () => {
   const fetchTips = async () => {
     try {
       setLoading(true);
-      const res = await fetch("http://localhost:3000/api/tips");
+      const res = await fetch(
+        "https://auth-eco-trac-server.vercel.app/api/tips"
+      );
       const data = await res.json();
       console.log("Tips data:", data);
 

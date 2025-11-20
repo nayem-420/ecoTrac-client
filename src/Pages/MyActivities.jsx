@@ -10,7 +10,7 @@ const MyActivities = () => {
   const [error, setError] = useState(null);
   const [activeTab, setActiveTab] = useState("all");
 
-  const API_BASE_URL = "http://localhost:3000";
+  const API_BASE_URL = "https://auth-eco-trac-server.vercel.app";
 
   useEffect(() => {
     const fetchActivities = async () => {
