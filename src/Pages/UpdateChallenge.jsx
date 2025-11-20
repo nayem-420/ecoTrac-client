@@ -23,7 +23,7 @@ const UpdateChallenge = () => {
       console.log("FormData:", formData);
 
       const res = await fetch(
-        `https://auth-eco-trac-server.vercel.app/challenges/${_id}`,
+        `https://auth-eco-trac-server-t1bc.vercel.app/challenges/${_id}`,
         {
           method: "PUT",
           headers: {

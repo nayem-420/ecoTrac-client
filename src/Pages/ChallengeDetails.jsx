@@ -37,7 +37,7 @@ const ChallengeDetails = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://auth-eco-trac-server.vercel.app/${_id}`, {
+        fetch(`https://auth-eco-trac-server-t1bc.vercel.app/${_id}`, {
           method: "DELETE",
           headers: {
             "content-type": "application/json",

@@ -75,7 +75,7 @@ const Challenges = () => {
 
     try {
       const response = await fetch(
-        "https://auth-eco-trac-server.vercel.app/challenges",
+        "https://auth-eco-trac-server-t1bc.vercel.app/challenges",
         {
           method: "POST",
           headers: {

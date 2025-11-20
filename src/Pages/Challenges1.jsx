@@ -22,7 +22,7 @@ const Challenges1 = () => {
       createdBy: user.email,
     };
 
-    fetch("https://auth-eco-trac-server.vercel.app/challenges", {
+    fetch("https://auth-eco-trac-server-t1bc.vercel.app/challenges", {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -13,7 +13,7 @@ const RecentTips = () => {
     try {
       setLoading(true);
       const res = await fetch(
-        "https://auth-eco-trac-server.vercel.app/api/tips"
+        "https://auth-eco-trac-server-t1bc.vercel.app/api/tips"
       );
       const data = await res.json();
       console.log("Tips data:", data);
